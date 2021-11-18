@@ -1,35 +1,41 @@
 /*
-Search and Replace
-Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+DNA Pairing
+The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.
 
-First argument is the sentence to perform the search and replace on.
+Base pairs are a pair of AT and CG. Match the missing element to the provided character.
 
-Second argument is the word that you will be replacing (before).
+Return the provided character as the first element in each array.
 
-Third argument is what you will be replacing the second argument with (after).
+For example, for the input GCG, return [["G", "C"], ["C","G"], ["G", "C"]]
 
-Note: Preserve the case of the first character in the original word when you are replacing it. For example if you mean to replace the word Book with the word dog, it should be replaced as Dog
+The character and its pair are paired up in an array, and all the arrays are grouped into one encapsulating array.
 */
 
 
-function myReplace(str, before, after) {
-  
-  if (before[0] == before[0].toUpperCase()) {
-    after = after[0].toUpperCase() + after.slice(1)
-    str = str.replace(before, after)
-  }
-  else if (after[0] == after[0].toUpperCase()) {
-    after = after[0].toLowerCase() + after.slice(1)
-    str = str.replace(before, after)
-  }
-  else { 
-    str = str.replace(before, after)
+function pairElement(str) {
+  let result = [];
+
+  for (let i = 0; i < str.length; i++) {
+    switch (str[i]) {
+      case "G":
+        result.push(["G", "C"])
+        break
+      case "C":
+        result.push(["C", "G"])
+        break
+      case "A":
+        result.push(["A", "T"])
+        break
+      case "T":
+        result.push(["T", "A"])
+        break
+    }
   }
 
-  console.log(str)
-  return str;
+  console.log(result)
+  return result;
 }
 
-myReplace("I think we should look up there", "up", "Down");
+pairElement("GCG");
 
-//If the before word is capitalized, it capitalizes the after word and uses .replace to replace it. If the after word is capitalized, it gets uncapitalized. This works for cases where both are capitalized too, as it's caught by the first condition. If neither of these two conditionals happen, it just replaces it normally.
+//Just uses a switch statement to push arrays onto the result variable.
