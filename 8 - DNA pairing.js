@@ -16,17 +16,19 @@ function pairElement(str) {
   let result = [];
 
   for (let i = 0; i < str.length; i++) {
-    if (str[i] == "G") {
-      result.push(["G", "C"])
-    }
-    else if (str[i] == "C") {
-      result.push(["C", "G"])
-    }
-     else if (str[i] == "A") {
-      result.push(["A", "T"])
-    }
-     else if (str[i] == "T") {
-      result.push(["T", "A"])
+    switch (str[i]) {
+      case "G":
+        result.push(["G", "C"])
+        break
+      case "C":
+        result.push(["C", "G"])
+        break
+      case "A":
+        result.push(["A", "T"])
+        break
+      case "T":
+        result.push(["T", "A"])
+        break
     }
   }
 
@@ -36,4 +38,4 @@ function pairElement(str) {
 
 pairElement("GCG");
 
-//Just uses if statements to manually push letter pairs in an array to the result. A case and switch statement or a look-up object might have been better, I did it this way because it's faster for me to type and think and also it's very readable even for people who only know basic syntax.
+//Just uses a switch statement to push arrays onto the result variable.
